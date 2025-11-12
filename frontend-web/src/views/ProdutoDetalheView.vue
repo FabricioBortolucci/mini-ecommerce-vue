@@ -1,0 +1,56 @@
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import axios from 'axios'
+
+const produto = ref(null)
+const loading = ref(true)
+
+const route = useRoute()
+
+onMounted(() => {
+  const produtoId = route.params.id
+
+  axios
+    .get(`http://localhost:8080/api/produtos/${produtoId}`)
+    .then((response) => {
+      produto.value = response.data
+      loading.value = false
+    })
+    .catch((error) => {
+      console.error('Erro ao buscar produto:', error)
+      loading.value = false
+    })
+})
+</script>
+
+<template>
+  <div>
+    <div v-if="loading" class="text-center text-gray-500 mt-10">
+      Carregando detalhes do produto...
+    </div>
+
+    <div v-else-if="produto" class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 p-4">
+      <div>
+        <img
+          :src="produto.imageUrl"
+          :alt="produto.nome"
+          class="w-full h-auto object-cover rounded-lg shadow-lg"
+        />
+      </div>
+
+      <div class="flex flex-col justify-center">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ produto.nome }}</h1>
+        <p class="text-lg text-gray-700 mb-6">{{ produto.descricao }}</p>
+
+        <div class="text-3xl font-light text-gray-900 mb-6">R$ {{ produto.preco }}</div>
+
+        <button
+          class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300"
+        >
+          Adicionar ao Carrinho (Em breve!)
+        </button>
+      </div>
+    </div>
+  </div>
+</template>

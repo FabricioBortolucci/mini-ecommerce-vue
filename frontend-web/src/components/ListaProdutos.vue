@@ -22,20 +22,24 @@ onMounted(() => {
 
     <div v-if="produtos.length > 0" class="bg-white shadow-md rounded-lg">
       <ul class="divide-y divide-gray-200">
-        <li v-for="produto in produtos" :key="produto.id" class="p-4 flex items-center space-x-4">
-          <img
-            :src="produto.imageUrl"
-            alt="Imagem do produto"
-            class="w-16 h-16 object-cover rounded"
-          />
+        <RouterLink v-for="produto in produtos" :key="produto.id" :to="'/produto/' + produto.id">
+          <li class="p-4 flex items-center space-x-4 hover:bg-gray-50 cursor-pointer">
+            <img
+              :src="produto.imageUrl"
+              alt="Imagem do produto"
+              class="w-16 h-16 object-cover rounded"
+            />
 
-          <div class="flex-1">
-            <h2 class="text-lg font-semibold text-gray-900">{{ produto.nome }}</h2>
-            <p class="text-gray-600">{{ produto.descricao }}</p>
-          </div>
+            <div class="flex-1">
+              <h2 class="text-lg font-semibold text-blue-700 hover:underline">
+                {{ produto.nome }}
+              </h2>
+              <p class="text-gray-600">{{ produto.descricao }}</p>
+            </div>
 
-          <span class="text-xl font-medium text-gray-900"> R$ {{ produto.preco }} </span>
-        </li>
+            <span class="text-xl font-medium text-gray-900"> R$ {{ produto.preco }} </span>
+          </li>
+        </RouterLink>
       </ul>
     </div>
 
