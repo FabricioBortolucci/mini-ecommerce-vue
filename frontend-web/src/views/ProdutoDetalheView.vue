@@ -42,7 +42,17 @@ onMounted(() => {
       <div class="flex flex-col justify-center">
         <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ produto.nome }}</h1>
         <p class="text-lg text-gray-700 mb-6">{{ produto.descricao }}</p>
-
+        <div v-if="produto.fornecedor" class="mt-4">
+          <p class="text-gray-600">
+            Vendido e entregue por:
+            <RouterLink
+              :to="'/detalhe-fornecedor/' + produto.fornecedor.id"
+              class="text-blue-600 font-bold hover:underline"
+            >
+              {{ produto.fornecedor.nome }}
+            </RouterLink>
+          </p>
+        </div>
         <div class="text-3xl font-light text-gray-900 mb-6">R$ {{ produto.preco }}</div>
 
         <button

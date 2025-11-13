@@ -21,6 +21,6 @@ public class ProdutoService {
     }
 
     public ResponseEntity<Produto> buscaProdPorId(Long id) {
-        return ResponseEntity.ok(produtoRepository.findById(id).orElseThrow());
+      return ResponseEntity.ok(produtoRepository.findById(id).orElseThrow());
     }
 }

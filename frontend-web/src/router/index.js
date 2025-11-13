@@ -13,6 +13,11 @@ const router = createRouter({
       name: 'detalhe-produto',
       component: () => import('../views/ProdutoDetalheView.vue'),
     },
+    {
+      path: '/detalhe-fornecedor/:id',
+      name: 'detalhe-fornecedor',
+      component: () => import('../views/DetalheFornecedorView.vue'),
+    },
   ],
 })
 
