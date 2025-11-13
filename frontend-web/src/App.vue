@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { useCarrinhoStore } from './stores/carrinhoStore'
+import NotificationList from './components/NotificationList.vue'
 
 const carrinho = useCarrinhoStore()
 </script>
@@ -25,6 +26,7 @@ const carrinho = useCarrinhoStore()
 
   <main class="container mx-auto p-4">
     <RouterView />
+    <NotificationList />
   </main>
 </template>
 
