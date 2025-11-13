@@ -2,11 +2,14 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import axios from 'axios'
+import { useCarrinhoStore } from '../stores/carrinhoStore'
 
 const produto = ref(null)
 const loading = ref(true)
 
 const route = useRoute()
+
+const carrinho = useCarrinhoStore()
 
 onMounted(() => {
   const produtoId = route.params.id
@@ -56,9 +59,10 @@ onMounted(() => {
         <div class="text-3xl font-light text-gray-900 mb-6">R$ {{ produto.preco }}</div>
 
         <button
-          class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300"
+          @click="carrinho.adicionar(produto)"
+          class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 cursor-pointer"
         >
-          Adicionar ao Carrinho (Em breve!)
+          Adicionar ao Carrinho
         </button>
       </div>
     </div>
