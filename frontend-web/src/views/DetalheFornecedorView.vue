@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import axios from 'axios'
+import api from '@/services/api'
 
 const fornecedor = ref(null)
 const loading = ref(true)
@@ -11,8 +11,8 @@ const route = useRoute()
 onMounted(() => {
   const fornecedorId = route.params.id
 
-  axios
-    .get(`http://localhost:8080/api/fornecedores/${fornecedorId}`)
+  api
+    .get(`/fornecedores/${fornecedorId}`)
     .then((response) => {
       fornecedor.value = response.data
       loading.value = false

@@ -1,8 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import axios from 'axios'
 import { useCarrinhoStore } from '../stores/carrinhoStore'
+import api from '@/services/api'
 
 const produto = ref(null)
 const loading = ref(true)
@@ -14,8 +14,8 @@ const carrinho = useCarrinhoStore()
 onMounted(() => {
   const produtoId = route.params.id
 
-  axios
-    .get(`http://localhost:8080/api/produtos/${produtoId}`)
+  api
+    .get(`/produtos/${produtoId}`)
     .then((response) => {
       produto.value = response.data
       loading.value = false

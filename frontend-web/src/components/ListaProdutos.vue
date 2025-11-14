@@ -1,12 +1,12 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import api from '@/services/api'
 
 const produtos = ref([])
 
 onMounted(() => {
-  axios
-    .get('http://localhost:8080/api/produtos')
+  api
+    .get('/produtos')
     .then((response) => {
       produtos.value = response.data
     })

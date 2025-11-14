@@ -23,6 +23,16 @@ const router = createRouter({
       name: 'carrinho',
       component: () => import('../views/CarrinhoView.vue'),
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginView.vue'),
+    },
+    {
+      path: '/registro',
+      name: 'registro',
+      component: () => import('../views/RegisterView.vue'),
+    },
   ],
 })
 
