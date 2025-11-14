@@ -8,7 +8,7 @@ const carrinho = useCarrinhoStore()
   <div class="max-w-3xl mx-auto">
     <h1 class="text-3xl font-bold mb-6">Meu Carrinho</h1>
 
-    <div v_if="carrinho.totalItens > 0">
+    <div v-if="carrinho.totalItens > 0">
       <ul class="divide-y divide-gray-200 bg-white shadow-lg rounded-lg">
         <li
           v-for="item in carrinho.itens"
@@ -31,14 +31,15 @@ const carrinho = useCarrinhoStore()
       <div class="mt-6 text-right">
         <h2 class="text-2xl font-bold">Total: R$ {{ carrinho.valorTotal }}</h2>
         <button
+          @click="carrinho.finalizarCompra()"
           class="mt-4 bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 cursor-pointer"
         >
-          Finalizar Compra (Em breve!)
+          Finalizar Compra
         </button>
       </div>
     </div>
 
-    <div else class="text-center text-gray-500 mt-10">
+    <div v-else class="text-center text-gray-500 mt-10">
       <p class="text-2xl">Seu carrinho está vazio.</p>
       <RouterLink to="/" class="text-blue-600 hover:underline">Voltar para a loja</RouterLink>
     </div>
