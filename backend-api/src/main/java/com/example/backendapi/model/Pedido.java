@@ -2,7 +2,11 @@ package com.example.backendapi.model;
 
 import com.example.backendapi.model.enums.StatusPedido;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -26,6 +30,7 @@ public class Pedido implements Serializable {
     private Usuario usuario;
 
     @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime dataPedido;
 
     @Column(nullable = false)

@@ -18,7 +18,7 @@ public class BackendApiApplication {
         SpringApplication.run(BackendApiApplication.class, args);
     }
 
-    @Bean
+   /* @Bean
     CommandLineRunner initDatabase(ProdutoRepository repository, FornecedorRepository fornecedorRepository) {
         return args -> {
             repository.deleteAll();
@@ -62,5 +62,5 @@ public class BackendApiApplication {
             repository.save(p1);
             repository.save(p2);
         };
-    }
+    }*/
 }

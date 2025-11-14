@@ -24,10 +24,16 @@ public class PedidoController {
     @PostMapping
     public ResponseEntity<Pedido> criarPedido(@RequestBody PedidoRequestDTO request,
                                               Authentication authentication) {
-        String emailDoUsuario = authentication.getName();
+        String username = authentication.getName();
 
-        Pedido pedidoCriado = pedidoService.criarPedido(request, emailDoUsuario);
+        Pedido pedidoCriado = pedidoService.criarPedido(request, username);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoCriado);
+    }
+
+    @GetMapping("/meus-pedidos")
+    public ResponseEntity<List<Pedido>> buscaMeusPedidos(Authentication authentication) {
+        String username = authentication.getName();
+        return ResponseEntity.ok(pedidoService.buscaPedidoPorUsuario(username));
     }
 }

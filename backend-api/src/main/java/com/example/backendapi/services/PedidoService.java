@@ -10,13 +10,13 @@ import com.example.backendapi.model.enums.StatusPedido;
 import com.example.backendapi.repositories.PedidoRepository;
 import com.example.backendapi.repositories.ProdutoRepository;
 import com.example.backendapi.repositories.UsuarioRepository;
-import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class PedidoService {
@@ -66,5 +66,12 @@ public class PedidoService {
         }
         novoPedido.setValorTotal(valorTotalDoPedido);
         return pedidoRepository.save(novoPedido);
+    }
+
+
+    public List<Pedido> buscaPedidoPorUsuario(String usuarioLogado) {
+        Usuario user = usuarioRepository.findByUsername(usuarioLogado)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+        return pedidoRepository.findAllByUsuario(user);
     }
 }

@@ -1,6 +1,6 @@
 package com.example.backendapi.controller;
 
-import com.example.backendapi.dto.AuthenticationResponse;
+import com.example.backendapi.dto.AuthenticationResponseDTO;
 import com.example.backendapi.dto.LoginRequest;
 import com.example.backendapi.dto.RegisterRequest;
 import com.example.backendapi.model.Usuario;
@@ -30,7 +30,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<AuthenticationResponseDTO> register(@RequestBody RegisterRequest request) {
         var usuario = Usuario.builder()
                 .username(request.username())
                 .password(passwordEncoder.encode(request.password()))
@@ -41,12 +41,12 @@ public class AuthController {
 
         var jwtToken = jwtService.generateToken(usuario);
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwtToken));
+        return ResponseEntity.ok(new AuthenticationResponseDTO(jwtToken));
     }
 
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<AuthenticationResponseDTO> login(@RequestBody LoginRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.username(),
@@ -59,7 +59,7 @@ public class AuthController {
 
         var jwtToken = jwtService.generateToken(usuario);
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwtToken));
+        return ResponseEntity.ok(new AuthenticationResponseDTO(jwtToken));
     }
 
     @GetMapping("/teste")
