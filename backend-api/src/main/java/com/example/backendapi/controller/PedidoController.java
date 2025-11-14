@@ -1,5 +1,6 @@
 package com.example.backendapi.controller;
 
+import com.example.backendapi.dto.PedidoDTO;
 import com.example.backendapi.dto.PedidoRequestDTO;
 import com.example.backendapi.model.Pedido;
 import com.example.backendapi.model.Produto;
@@ -32,7 +33,7 @@ public class PedidoController {
     }
 
     @GetMapping("/meus-pedidos")
-    public ResponseEntity<List<Pedido>> buscaMeusPedidos(Authentication authentication) {
+    public ResponseEntity<List<PedidoDTO>> buscaMeusPedidos(Authentication authentication) {
         String username = authentication.getName();
         return ResponseEntity.ok(pedidoService.buscaPedidoPorUsuario(username));
     }

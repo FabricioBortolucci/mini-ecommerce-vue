@@ -31,6 +31,7 @@ public class Pedido implements Serializable {
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataPedido;
 
     @Column(nullable = false)

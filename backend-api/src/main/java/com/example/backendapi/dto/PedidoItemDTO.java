@@ -1,7 +1,12 @@
 package com.example.backendapi.dto;
 
 
-public record PedidoItemDTO(
+import java.math.BigDecimal;
 
+public record PedidoItemDTO(
+        Long id,
+        Integer quantidade,
+        BigDecimal precoUnitario,
+        ProdutoDTO produto
 ) {
 }
