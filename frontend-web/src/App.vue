@@ -30,8 +30,9 @@ const testarRotaSegura = async () => {
       </div>
 
       <div class="space-x-4 flex items-center">
-        <RouterLink to="/" class="hover:text-gray-300">Home</RouterLink>
-
+        <RouterLink v-if="authStore.isLoggedIn" to="/meus-pedidos" class="hover:text-gray-300"
+          >Meus Pedidos</RouterLink
+        >
         <template v-if="!authStore.isLoggedIn">
           <RouterLink to="/login" class="hover:text-gray-300">Login</RouterLink>
           <RouterLink to="/registro" class="hover:text-gray-300">Registrar</RouterLink>
