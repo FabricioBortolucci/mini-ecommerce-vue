@@ -11,16 +11,35 @@ const carrinho = useCarrinhoStore()
     <div v-if="carrinho.totalItens > 0">
       <ul class="divide-y divide-gray-200 bg-white shadow-lg rounded-lg">
         <li
-          v-for="item in carrinho.itens"
+          v-for="item in carrinho.itens.values()"
           :key="item.id"
           class="flex items-center justify-between p-4"
         >
           <div>
-            <h2 class="font-semibold">{{ item.nome }}</h2>
-            <p class="text-gray-600">R$ {{ item.preco }}</p>
+            <h2 class="font-semibold">{{ item.produto.nome }}</h2>
+            <p class="text-gray-600">R$ {{ item.produto.preco }}</p>
+            <p class="text-gray-600">
+              Quantidade:
+
+              <button
+                @click="carrinho.decrementarQuantidade(item.produto.id)"
+                class="text-gray-700 hover:text-gray-700 font-semibold cursor-pointer"
+              >
+                -
+              </button>
+
+              {{ item.quantidade }}
+
+              <button
+                @click="carrinho.incrementarQuantidade(item.produto.id)"
+                class="text-blue-500 hover:text-blue-700 font-semibold cursor-pointer"
+              >
+                +
+              </button>
+            </p>
           </div>
           <button
-            @click="carrinho.remover(item.id)"
+            @click="carrinho.remover(item.produto.id)"
             class="text-red-500 hover:text-red-700 font-semibold cursor-pointer"
           >
             Remover
