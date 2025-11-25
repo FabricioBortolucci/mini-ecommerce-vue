@@ -24,6 +24,10 @@ public class ProdutoService {
     }
 
     public List<Produto> buscaProdutos() {
+        return produtoRepository.findAllByAtivo(true);
+    }
+
+    public List<Produto> buscaProdutosAdmin() {
         return produtoRepository.findAll();
     }
 
@@ -44,7 +48,8 @@ public class ProdutoService {
                 produto.descricao(),
                 produto.preco(),
                 produto.imageUrl(),
-                fornecedor);
+                fornecedor,
+                true);
 
        return produtoRepository.save(prod);
     }

@@ -1,4 +1,4 @@
 package com.example.backendapi.dto;
 
-public record AuthenticationResponseDTO(String token) {
+public record AuthenticationResponseDTO(String token, String role) {
 }

@@ -41,7 +41,7 @@ public class AuthController {
 
         var jwtToken = jwtService.generateToken(usuario);
 
-        return ResponseEntity.ok(new AuthenticationResponseDTO(jwtToken));
+        return ResponseEntity.ok(new AuthenticationResponseDTO(jwtToken, usuario.getRole().name()));
     }
 
 
@@ -59,7 +59,7 @@ public class AuthController {
 
         var jwtToken = jwtService.generateToken(usuario);
 
-        return ResponseEntity.ok(new AuthenticationResponseDTO(jwtToken));
+        return ResponseEntity.ok(new AuthenticationResponseDTO(jwtToken, usuario.getRole().name()));
     }
 
     @GetMapping("/teste")

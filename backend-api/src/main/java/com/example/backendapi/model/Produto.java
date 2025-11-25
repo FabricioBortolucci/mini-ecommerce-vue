@@ -32,4 +32,7 @@ public class Produto implements Serializable {
 
     @ManyToOne
     private Fornecedor fornecedor;
+
+    @Column(nullable = false)
+    private Boolean ativo = true;
 }

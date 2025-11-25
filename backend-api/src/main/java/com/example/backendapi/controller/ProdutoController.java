@@ -32,6 +32,11 @@ public class ProdutoController {
         return produtoService.buscaProdutos();
     }
 
+    @GetMapping("/admin")
+    public List<Produto> listaProdutosAdmin() {
+        return produtoService.buscaProdutosAdmin();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Produto> buscaProduto(@PathVariable Long id) {
         return produtoService.buscaProdPorId(id);
@@ -65,10 +70,21 @@ public class ProdutoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarProduto(@PathVariable Long id) {
-        if (produtoService.existsById(id)) {
-            produtoService.deleteById(id);
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
+        return produtoService.buscaProdutoPorId(id)
+                .map(produto -> {
+                    produto.setAtivo(false);
+                    produtoService.save(produto);
+                    return ResponseEntity.noContent().<Void>build();
+                }).orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/ativar/{id}")
+    public ResponseEntity<Void> ativarProduto(@PathVariable Long id) {
+        return produtoService.buscaProdutoPorId(id)
+                .map(produto -> {
+                    produto.setAtivo(true);
+                    produtoService.save(produto);
+                    return ResponseEntity.noContent().<Void>build();
+                }).orElse(ResponseEntity.notFound().build());
     }
 }
