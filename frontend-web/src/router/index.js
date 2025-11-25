@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/authStore'
+import { useRequestLogStore } from '@/stores/requestLogStore.js'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,11 +47,18 @@ const router = createRouter({
     },
     {
       path: '/admin/produtos/novo',
+      name: 'admin-novo-produto',
       component: () => import('../views/admin/AdminProdutoForm.vue'),
     },
     {
       path: '/admin/produtos/editar/:id',
+      name: 'admin-editar-produto',
       component: () => import('../views/admin/AdminProdutoForm.vue'),
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('../views/aboutView.vue'),
     },
   ],
 })
@@ -65,4 +73,16 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
+router.afterEach((to, from) => {
+  const logStore = useRequestLogStore()
+
+  logStore.addLog({
+    method: 'ROUTE', // Um método "falso" para identificar navegação
+    url: to.fullPath,
+    status: 'OK',
+    statusText: 'Navegação Interna',
+    duration: 0,
+    type: 'info'
+  })
+})
 export default router
