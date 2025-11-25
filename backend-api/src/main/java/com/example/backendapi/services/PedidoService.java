@@ -100,7 +100,10 @@ public class PedidoService {
         ProdutoDTO produtoDTO = new ProdutoDTO(
                 produto.getId(),
                 produto.getNome(),
-                produto.getImageUrl()
+                produto.getImageUrl(),
+                null,
+                null,
+                null
         );
 
         return new PedidoItemDTO(
