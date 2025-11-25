@@ -7,7 +7,6 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-> **Status do Projeto:** ✅ Concluído e Deployed
 
 Este projeto é uma aplicação **Full Stack** robusta que simula um e-commerce completo. Ele foi desenvolvido com o objetivo de demonstrar a implementação de uma arquitetura moderna e segura, separando completamente o Backend (API REST) do Frontend (SPA), utilizando práticas profissionais de desenvolvimento como autenticação JWT, gerenciamento de estado global e deploy containerizado.
 
