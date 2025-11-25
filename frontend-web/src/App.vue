@@ -33,6 +33,13 @@ const testarRotaSegura = async () => {
         <RouterLink v-if="authStore.isLoggedIn" to="/meus-pedidos" class="hover:text-gray-300"
           >Meus Pedidos</RouterLink
         >
+        <RouterLink
+          v-if="authStore.isAdmin"
+          to="/admin/produtos"
+          class="text-yellow-400 hover:text-yellow-300 font-bold"
+        >
+          Painel Admin
+        </RouterLink>
         <template v-if="!authStore.isLoggedIn">
           <RouterLink to="/login" class="hover:text-gray-300">Login</RouterLink>
           <RouterLink to="/registro" class="hover:text-gray-300">Registrar</RouterLink>

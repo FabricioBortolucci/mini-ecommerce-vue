@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '../stores/authStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,7 +39,30 @@ const router = createRouter({
       name: 'meus-pedidos',
       component: () => import('../views/MeusPedidosView.vue'),
     },
+    {
+      path: '/admin/produtos',
+      name: 'admin-produtos',
+      component: () => import('../views/admin/AdminProdutoList.vue'),
+    },
+    {
+      path: '/admin/produtos/novo',
+      component: () => import('../views/admin/AdminProdutoForm.vue'),
+    },
+    {
+      path: '/admin/produtos/editar/:id',
+      component: () => import('../views/admin/AdminProdutoForm.vue'),
+    },
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore()
+  if (to.path.startsWith('/admin')) {
+    if (!authStore.isAdmin) {
+      return next('/')
+    }
+  }
+  next()
 })
 
 export default router
