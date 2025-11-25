@@ -39,7 +39,7 @@ const loginDemoAdmin = async () => {
         <label class="block text-gray-700 font-bold mb-2">Email</label>
         <input
           v-model="username"
-          type="email"
+          type="text"
           class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
           required
         />
